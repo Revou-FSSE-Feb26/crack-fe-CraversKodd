@@ -1,14 +1,13 @@
 // src/App.jsx
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Home from './pages/public/Home';
-
-// Placeholder Pages (Sisa halaman lainnya)
-const Login = () => <div className="p-8 text-center text-xl">Halaman Login (Segera Hadir)</div>;
-const Register = () => <div className="p-8 text-center text-xl">Halaman Register (Segera Hadir)</div>;
-const WorkspaceDetail = () => <div className="p-8 text-center text-xl">Halaman Detail & Booking (Segera Hadir)</div>;
-const UserDashboard = () => <div className="p-8">User Dashboard</div>;
-const AdminDashboard = () => <div className="p-8">Admin Dashboard</div>;
+import Navbar from './components/navbar';
+import Footer from './components/footer';
+import Home from './pages/public/home';
+import Login from './pages/public/login';
+import Register from './pages/public/register';
+import WorkspaceDetail from './pages/public/workspacedetail';
+import UserDashboard from './pages/user/UserDashboard';
+import AdminDashboard from './pages/admin/admindashboard';
 
 function App() {
   return (
