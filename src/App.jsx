@@ -8,26 +8,46 @@ import Register from './pages/public/register';
 import WorkspaceDetail from './pages/public/workspacedetail';
 import UserDashboard from './pages/user/UserDashboard';
 import AdminDashboard from './pages/admin/admindashboard';
+import ProtectedRoute from './components/protectedroute';
+
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-gray-50 flex flex-col">
-        {/* Navbar akan selalu muncul di semua halaman */}
+      <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
         <Navbar />
         
-        {/* Konten Halaman */}
         <main className="flex-grow">
           <Routes>
+            {/* Public Routes (Siapapun bisa akses) */}
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/workspace/:id" element={<WorkspaceDetail />} />
             
-            <Route path="/user/dashboard" element={<UserDashboard />} />
-            <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            {/* User Route (Hanya user yang sudah login, role apa saja boleh) */}
+            <Route 
+              path="/user/dashboard" 
+              element={
+                <ProtectedRoute>
+                  <UserDashboard />
+                </ProtectedRoute>
+              } 
+            />
+            
+            {/* Admin Route (Hanya user dengan role ADMIN) */}
+            <Route 
+              path="/admin/dashboard" 
+              element={
+                <ProtectedRoute allowedRole="ADMIN">
+                  <AdminDashboard />
+                </ProtectedRoute>
+              } 
+            />
           </Routes>
         </main>
+
+        <Footer />
       </div>
     </BrowserRouter>
   );
